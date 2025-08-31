@@ -85,72 +85,103 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Drawer Overlay */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
-            onClick={() => setIsMobileMenuOpen(false)}
-          ></div>
-          
-          {/* Drawer */}
-          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out">
-            <div className="flex flex-col h-full">
-              {/* Drawer Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                <div className="flex items-center space-x-2">
-                  <img 
-                    src="/logo .svg" 
-                    alt="Foxicon Logo" 
-                    className="h-6 w-6"
-                  />
-                  <div>
-                    <div className="text-base font-bold text-gray-900">Foxicon</div>
-                    <div className="text-xs text-gray-600 -mt-0.5">Academy</div>
-                  </div>
+      <div className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${
+        isMobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+      }`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        {/* Glassy Blur Backdrop */}
+        <div 
+          className={`fixed inset-0 backdrop-blur-md bg-black/20 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+          }}
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+        
+        {/* Drawer */}
+        <div className={`fixed top-0 right-0 h-full w-64 bg-white/95 backdrop-blur-lg shadow-2xl transform transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+        }`}
+        style={{
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.2)',
+        }}>
+          <div className="flex flex-col h-full relative">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200/50 backdrop-blur-sm">
+              <div className="flex items-center space-x-2 transform transition-transform duration-300 ease-in-out">
+                <img 
+                  src="/logo .svg" 
+                  alt="Foxicon Logo" 
+                  className="h-6 w-6"
+                />
+                <div>
+                  <div className="text-base font-bold text-gray-900">Foxicon</div>
+                  <div className="text-xs text-gray-600 -mt-0.5">Academy</div>
                 </div>
-                <button 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-600 hover:text-gray-900 p-1"
-                >
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
               </div>
-              
-              {/* Navigation Links */}
-              <div className="flex-1 py-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-3 text-base font-medium transition-colors ${
-                      location.pathname === item.path
-                        ? 'text-purple-600 bg-purple-50 border-r-2 border-purple-600'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              
-              {/* Drawer Footer */}
-              <div className="p-4 border-t border-gray-200">
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-600 hover:text-gray-900 p-1 rounded-full hover:bg-gray-100/50 transition-all duration-200 transform hover:scale-110"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Navigation Links */}
+            <div className="flex-1 py-4">
+              {navItems.map((item, index) => (
                 <Link
-                  to="/login"
+                  key={item.path}
+                  to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full bg-purple-600 text-white text-center py-3 rounded-full font-medium hover:bg-purple-700 transition-colors"
+                  className={`block px-4 py-3 text-base font-medium transition-all duration-200 transform hover:translate-x-1 ${
+                    location.pathname === item.path
+                      ? 'text-purple-600 bg-purple-50/70 border-r-2 border-purple-600 backdrop-blur-sm'
+                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50/50 hover:backdrop-blur-sm'
+                  }`}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animation: isMobileMenuOpen ? 'slideInFromRight 0.3s ease-out forwards' : '',
+                  }}
                 >
-                  Login
+                  {item.label}
                 </Link>
-              </div>
+              ))}
+            </div>
+            
+            {/* Drawer Footer */}
+            <div className="p-4 border-t border-gray-200/50 backdrop-blur-sm">
+              <Link
+                to="/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block w-full bg-purple-600/90 backdrop-blur-sm text-white text-center py-3 rounded-full font-medium hover:bg-purple-700/90 transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
+              >
+                Login
+              </Link>
             </div>
           </div>
         </div>
-      )}
+        
+        {/* CSS Animations */}
+        <style>{`
+          @keyframes slideInFromRight {
+            from {
+              opacity: 0;
+              transform: translateX(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
+      </div>
     </>
   );
 };

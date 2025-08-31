@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaAws,
@@ -9,39 +9,98 @@ import {
   FaNodeJs,
   FaDocker,
   FaGitAlt,
-  FaJenkins,
   FaCss3Alt,
   FaHtml5,
   FaDatabase,
   FaCloud,
   FaServer,
   FaCogs,
-  FaCode
+  FaCode,
+  FaLeaf
 } from 'react-icons/fa';
+import { 
+  SiKubernetes,
+  SiTerraform,
+  SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiJenkins,
+  SiGooglecloud
+} from 'react-icons/si';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [typedText, setTypedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+
+  const fullText = '"We are not just another learning platform, but a community."';
+  
+  useEffect(() => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index < fullText.length) {
+        setTypedText(fullText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+        // Hide cursor after typing is complete
+        setTimeout(() => setShowCursor(false), 1000);
+      }
+    }, 50); // Adjust speed here (lower = faster)
+
+    // Cursor blinking effect
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+
+    return () => {
+      clearInterval(typingInterval);
+      clearInterval(cursorInterval);
+    };
+  }, []);
+
+  // Function to render text with highlighted "community"
+  const renderTypedText = () => {
+    const communityIndex = typedText.indexOf('community');
+    if (communityIndex === -1 || !typedText.includes('community')) {
+      return typedText;
+    }
+    
+    const beforeCommunity = typedText.slice(0, communityIndex);
+    const community = 'community';
+    const afterCommunity = typedText.slice(communityIndex + community.length);
+    
+    return (
+      <>
+        {beforeCommunity}
+        <span className="font-semibold text-purple-600 relative">
+          {community}
+          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-purple-300 animate-pulse"></span>
+        </span>
+        {afterCommunity}
+      </>
+    );
+  };
 
   // Tech logos data for the marquee
   const techLogos = [
-    { name: 'Python', bg: 'bg-blue-100', icon: <FaPython className="w-6 h-6 text-blue-600" /> },
-    { name: 'React', bg: 'bg-cyan-100', icon: <FaReact className="w-6 h-6 text-cyan-500" /> },
-    { name: 'JavaScript', bg: 'bg-yellow-100', icon: <FaJs className="w-6 h-6 text-yellow-600" /> },
-    { name: 'Node.js', bg: 'bg-green-100', icon: <FaNodeJs className="w-6 h-6 text-green-600" /> },
-    { name: 'Docker', bg: 'bg-blue-200', icon: <FaDocker className="w-6 h-6 text-blue-700" /> },
-    { name: 'GitHub', bg: 'bg-gray-100', icon: <FaGithub className="w-6 h-6 text-gray-800" /> },
-    { name: 'Git', bg: 'bg-orange-100', icon: <FaGitAlt className="w-6 h-6 text-orange-600" /> },
-    { name: 'Google Cloud', bg: 'bg-blue-50', icon: <FaCloud className="w-6 h-6 text-blue-500" /> },
-    { name: 'Jenkins', bg: 'bg-red-100', icon: <FaJenkins className="w-6 h-6 text-red-600" /> },
-    { name: 'Kubernetes', bg: 'bg-blue-300', icon: <FaServer className="w-6 h-6 text-blue-800" /> },
-    { name: 'Terraform', bg: 'bg-purple-100', icon: <FaCogs className="w-6 h-6 text-purple-600" /> },
-    { name: 'CSS3', bg: 'bg-blue-100', icon: <FaCss3Alt className="w-6 h-6 text-blue-500" /> },
-    { name: 'HTML5', bg: 'bg-orange-100', icon: <FaHtml5 className="w-6 h-6 text-orange-500" /> },
-    { name: 'MongoDB', bg: 'bg-green-200', icon: <FaDatabase className="w-6 h-6 text-green-700" /> },
-    { name: 'PostgreSQL', bg: 'bg-blue-200', icon: <FaDatabase className="w-6 h-6 text-blue-700" /> },
-    { name: 'Redis', bg: 'bg-red-100', icon: <FaDatabase className="w-6 h-6 text-red-600" /> },
-    { name: 'AWS', bg: 'bg-orange-100', icon: <FaAws className="w-6 h-6 text-orange-500" /> },
-    { name: 'Azure', bg: 'bg-blue-100', icon: <FaCloud className="w-6 h-6 text-blue-600" /> },
+    { name: 'Python', bg: 'bg-blue-100', icon: <FaPython className="text-blue-600" /> },
+    { name: 'React', bg: 'bg-cyan-100', icon: <FaReact className="text-cyan-500" /> },
+    { name: 'JavaScript', bg: 'bg-yellow-100', icon: <FaJs className="text-yellow-600" /> },
+    { name: 'Node.js', bg: 'bg-green-100', icon: <FaNodeJs className="text-green-600" /> },
+    { name: 'Docker', bg: 'bg-blue-200', icon: <FaDocker className="text-blue-700" /> },
+    { name: 'GitHub', bg: 'bg-gray-100', icon: <FaGithub className="text-gray-800" /> },
+    { name: 'Git', bg: 'bg-orange-100', icon: <FaGitAlt className="text-orange-600" /> },
+    { name: 'Google Cloud', bg: 'bg-red-50', icon: <SiGooglecloud className="text-red-500" /> },
+    { name: 'Jenkins', bg: 'bg-red-100', icon: <SiJenkins className="text-red-600" /> },
+    { name: 'Kubernetes', bg: 'bg-indigo-100', icon: <SiKubernetes className="text-indigo-600" /> },
+    { name: 'Terraform', bg: 'bg-purple-100', icon: <SiTerraform className="text-purple-600" /> },
+    { name: 'CSS3', bg: 'bg-sky-100', icon: <FaCss3Alt className="text-sky-500" /> },
+    { name: 'HTML5', bg: 'bg-amber-100', icon: <FaHtml5 className="text-amber-500" /> },
+    { name: 'MongoDB', bg: 'bg-green-200', icon: <SiMongodb className="text-green-700" /> },
+    { name: 'PostgreSQL', bg: 'bg-slate-100', icon: <SiPostgresql className="text-slate-600" /> },
+    { name: 'Redis', bg: 'bg-rose-100', icon: <SiRedis className="text-rose-600" /> },
+    { name: 'AWS', bg: 'bg-orange-50', icon: <FaAws className="text-orange-500" /> },
   ];
 
   return (
@@ -49,35 +108,38 @@ const Home = () => {
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 sm:px-6">
         {/* Main Heading */}
-        <div className="text-center mb-4 sm:mb-6">
-          <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
             Foxicon <span className="text-purple-600">Academy</span> — Learn. Connect. Explore.
           </h1>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-sm sm:max-w-md md:max-w-xl mx-auto px-2 sm:px-4">
-            "We are not just another learning platform, but a <span className="font-medium">community</span>."
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto px-4 sm:px-6 min-h-[3rem] sm:min-h-[3.5rem] flex items-center justify-center">
+            <span className="inline-block">
+              {renderTypedText()}
+              {showCursor && <span className="animate-pulse text-purple-600 font-bold ml-0.5">|</span>}
+            </span>
           </p>
         </div>
 
         {/* Search Bar */}
-        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mb-4 sm:mb-6">
+        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mb-6 sm:mb-8">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="DevOps for beginner ..."
-            className="w-full px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white shadow-sm"
+            className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base md:text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white shadow-sm"
           />
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-row gap-2 sm:gap-3 mb-6 sm:mb-8 w-full justify-center items-center px-2 sm:px-4">
+        <div className="flex flex-row gap-3 sm:gap-4 mb-8 sm:mb-10 w-full justify-center items-center px-4 sm:px-6">
           <Link
             to="/courses"
-            className="flex-1 sm:flex-none sm:w-auto px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 border border-gray-300 text-gray-700 rounded-full font-medium hover:bg-gray-50 transition-colors text-center text-xs sm:text-sm max-w-[120px] sm:max-w-[140px] md:max-w-xs"
+            className="px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3 border border-gray-300 text-gray-700 rounded-full font-medium hover:bg-gray-50 transition-colors text-center text-sm sm:text-base whitespace-nowrap"
           >
             Explore Courses
           </Link>
-          <button className="flex-1 sm:flex-none sm:w-auto px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors text-xs sm:text-sm max-w-[120px] sm:max-w-[140px] md:max-w-xs">
+          <button className="px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-700 transition-colors text-sm sm:text-base whitespace-nowrap">
             Join Community
           </button>
         </div>
@@ -120,11 +182,9 @@ const Home = () => {
                     className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 ${tech.bg} rounded-lg sm:rounded-xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm`}
                     title={tech.name}
                   >
-                    <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
-                      {React.cloneElement(tech.icon, { 
-                        className: tech.icon.props.className?.replace('w-6 h-6', 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6') || 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6'
-                      })}
-                    </div>
+                    {React.cloneElement(tech.icon, { 
+                      className: `w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${tech.icon.props.className || ''}`
+                    })}
                   </div>
                 ))}
               </div>
@@ -136,11 +196,9 @@ const Home = () => {
                     className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 ${tech.bg} rounded-lg sm:rounded-xl flex items-center justify-center transition-transform hover:scale-110 shadow-sm`}
                     title={tech.name}
                   >
-                    <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
-                      {React.cloneElement(tech.icon, { 
-                        className: tech.icon.props.className?.replace('w-6 h-6', 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6') || 'w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6'
-                      })}
-                    </div>
+                    {React.cloneElement(tech.icon, { 
+                      className: `w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${tech.icon.props.className || ''}`
+                    })}
                   </div>
                 ))}
               </div>
@@ -149,8 +207,8 @@ const Home = () => {
         </div>
 
         {/* Bottom Text */}
-        <div className="text-center px-2 sm:px-4">
-          <p className="text-xs sm:text-sm md:text-base text-gray-700 max-w-lg mx-auto">
+        <div className="text-center px-4 sm:px-6">
+          <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-lg sm:max-w-xl md:max-w-2xl mx-auto">
             Let's learn future technologies that matter — <span className="font-semibold">AI, DevOps, Data Science & more.</span>
           </p>
         </div>
