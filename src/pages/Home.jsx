@@ -84,23 +84,24 @@ const Home = () => {
 
   // Tech logos data for the marquee
   const techLogos = [
-    { name: 'Python', bg: 'bg-blue-100', icon: <FaPython className="text-blue-600" /> },
-    { name: 'React', bg: 'bg-cyan-100', icon: <FaReact className="text-cyan-500" /> },
-    { name: 'JavaScript', bg: 'bg-yellow-100', icon: <FaJs className="text-yellow-600" /> },
-    { name: 'Node.js', bg: 'bg-green-100', icon: <FaNodeJs className="text-green-600" /> },
-    { name: 'Docker', bg: 'bg-blue-200', icon: <FaDocker className="text-blue-700" /> },
-    { name: 'GitHub', bg: 'bg-gray-100', icon: <FaGithub className="text-gray-800" /> },
-    { name: 'Git', bg: 'bg-orange-100', icon: <FaGitAlt className="text-orange-600" /> },
-    { name: 'Google Cloud', bg: 'bg-red-50', icon: <SiGooglecloud className="text-red-500" /> },
-    { name: 'Jenkins', bg: 'bg-red-100', icon: <SiJenkins className="text-red-600" /> },
-    { name: 'Kubernetes', bg: 'bg-indigo-100', icon: <SiKubernetes className="text-indigo-600" /> },
-    { name: 'Terraform', bg: 'bg-purple-100', icon: <SiTerraform className="text-purple-600" /> },
-    { name: 'CSS3', bg: 'bg-sky-100', icon: <FaCss3Alt className="text-sky-500" /> },
-    { name: 'HTML5', bg: 'bg-amber-100', icon: <FaHtml5 className="text-amber-500" /> },
-    { name: 'MongoDB', bg: 'bg-green-200', icon: <SiMongodb className="text-green-700" /> },
-    { name: 'PostgreSQL', bg: 'bg-slate-100', icon: <SiPostgresql className="text-slate-600" /> },
-    { name: 'Redis', bg: 'bg-rose-100', icon: <SiRedis className="text-rose-600" /> },
-    { name: 'AWS', bg: 'bg-orange-50', icon: <FaAws className="text-orange-500" /> },
+    { name: 'Python', bg: 'bg-blue-100', icon: <FaPython className="w-6 h-6 text-blue-600" /> },
+    { name: 'React', bg: 'bg-cyan-100', icon: <FaReact className="w-6 h-6 text-cyan-500" /> },
+    { name: 'JavaScript', bg: 'bg-yellow-100', icon: <FaJs className="w-6 h-6 text-yellow-600" /> },
+    { name: 'Node.js', bg: 'bg-green-100', icon: <FaNodeJs className="w-6 h-6 text-green-600" /> },
+    { name: 'Docker', bg: 'bg-blue-200', icon: <FaDocker className="w-6 h-6 text-blue-700" /> },
+    { name: 'GitHub', bg: 'bg-gray-100', icon: <FaGithub className="w-6 h-6 text-gray-800" /> },
+    { name: 'Git', bg: 'bg-orange-100', icon: <FaGitAlt className="w-6 h-6 text-orange-600" /> },
+    { name: 'Google Cloud', bg: 'bg-red-50', icon: <SiGooglecloud className="w-6 h-6 text-red-500" /> },
+    { name: 'Jenkins', bg: 'bg-red-100', icon: <SiJenkins className="w-6 h-6 text-red-600" /> },
+    { name: 'Kubernetes', bg: 'bg-indigo-100', icon: <SiKubernetes className="w-6 h-6 text-indigo-600" /> },
+    { name: 'Terraform', bg: 'bg-purple-100', icon: <SiTerraform className="w-6 h-6 text-purple-600" /> },
+    { name: 'CSS3', bg: 'bg-sky-100', icon: <FaCss3Alt className="w-6 h-6 text-sky-500" /> },
+    { name: 'HTML5', bg: 'bg-amber-100', icon: <FaHtml5 className="w-6 h-6 text-amber-500" /> },
+    { name: 'MongoDB', bg: 'bg-green-200', icon: <SiMongodb className="w-6 h-6 text-green-700" /> },
+    { name: 'PostgreSQL', bg: 'bg-slate-100', icon: <SiPostgresql className="w-6 h-6 text-slate-600" /> },
+    { name: 'Redis', bg: 'bg-rose-100', icon: <SiRedis className="w-6 h-6 text-rose-600" /> },
+    { name: 'AWS', bg: 'bg-orange-50', icon: <FaAws className="w-6 h-6 text-orange-500" /> },
+    { name: 'Azure', bg: 'bg-blue-50', icon: <FaCloud className="w-6 h-6 text-blue-500" /> },
   ];
 
   return (
@@ -109,10 +110,10 @@ const Home = () => {
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 sm:px-6">
         {/* Main Heading */}
         <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
             Foxicon <span className="text-purple-600">Academy</span> — Learn. Connect. Explore.
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto px-4 sm:px-6 min-h-[3rem] sm:min-h-[3.5rem] flex items-center justify-center">
+          <p className="text-sm sm:text-base md:text-lg lg:text-lg text-gray-600 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-xl mx-auto px-4 sm:px-6 min-h-[3rem] sm:min-h-[3.5rem] flex items-center justify-center">
             <span className="inline-block">
               {renderTypedText()}
               {showCursor && <span className="animate-pulse text-purple-600 font-bold ml-0.5">|</span>}
@@ -121,13 +122,13 @@ const Home = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mb-6 sm:mb-8">
+        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-lg mb-6 sm:mb-8">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="DevOps for beginner ..."
-            className="w-full px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base md:text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white shadow-sm"
+            className="w-full px-4 sm:px-5 md:px-6 lg:px-6 py-3 sm:py-3.5 md:py-4 lg:py-3.5 text-sm sm:text-base md:text-lg lg:text-base border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white shadow-sm"
           />
         </div>
 
@@ -208,7 +209,7 @@ const Home = () => {
 
         {/* Bottom Text */}
         <div className="text-center px-4 sm:px-6">
-          <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-lg sm:max-w-xl md:max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-base text-gray-700 max-w-lg sm:max-w-xl md:max-w-xl lg:max-w-lg mx-auto">
             Let's learn future technologies that matter — <span className="font-semibold">AI, DevOps, Data Science & more.</span>
           </p>
         </div>
