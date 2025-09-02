@@ -19,17 +19,13 @@ const Navbar = () => {
           <div className="px-4 sm:px-6 py-2.5 sm:py-3">
             <div className="flex justify-between items-center">
               {/* Logo Section */}
-              <div className="flex items-center space-x-2">
-                <Link to="/" className="flex items-center space-x-2">
+              <div className="flex items-center">
+                <Link to="/" className="flex items-center">
                   <img 
                     src="/logo .svg" 
-                    alt="Foxicon Logo" 
-                    className="h-5 w-5 sm:h-6 sm:w-6"
+                    alt="Foxicon Academy Logo" 
+                    className="h-8 w-auto sm:h-10 sm:w-auto"
                   />
-                  <div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">Foxicon</div>
-                    <div className="text-xs text-gray-600 -mt-0.5">Academy</div>
-                  </div>
                 </Link>
               </div>
               
@@ -112,16 +108,12 @@ const Navbar = () => {
           <div className="flex flex-col h-full relative">
             {/* Drawer Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200/50 backdrop-blur-sm">
-              <div className="flex items-center space-x-2 transform transition-transform duration-300 ease-in-out">
+              <div className="flex items-center transform transition-transform duration-300 ease-in-out">
                 <img 
                   src="/logo .svg" 
-                  alt="Foxicon Logo" 
-                  className="h-6 w-6"
+                  alt="Foxicon Academy Logo" 
+                  className="h-9 w-auto"
                 />
-                <div>
-                  <div className="text-base font-bold text-gray-900">Foxicon</div>
-                  <div className="text-xs text-gray-600 -mt-0.5">Academy</div>
-                </div>
               </div>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
