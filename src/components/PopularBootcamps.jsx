@@ -52,14 +52,24 @@ const BootcampCard = ({ isActive, position, index, currentSlide }) => {
       className="absolute left-1/2 top-0 w-64 max-w-[85vw]"
       style={getCardStyle()}
     >
-      <div className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-2xl shadow-2xl overflow-hidden aspect-[4/5] backdrop-blur-sm">
-        {/* Placeholder for bootcamp thumbnail */}
-        <div className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-          <span className="text-white text-sm font-medium text-center px-4 relative z-10">
-            Bootcamp {index + 1}
+      <div className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-3xl shadow-2xl overflow-hidden aspect-[4/5] backdrop-blur-sm relative">
+        {/* Live Indicator */}
+        <div className="absolute top-3 right-3 z-10 flex items-center space-x-2">
+          <div className="relative">
+            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
+          </div>
+          <span className="text-white text-xs font-semibold bg-black/30 backdrop-blur-sm px-2 py-1 rounded-full">
+            LIVE
           </span>
         </div>
+
+        {/* Bootcamp Image */}
+        <img 
+          src="/sample_bootcamp.png"
+          alt={`Bootcamp ${index + 1}`}
+          className="w-full h-full object-cover"
+        />
       </div>
     </div>
   );
@@ -119,27 +129,27 @@ const PopularBootcamps = () => {
         <div className="relative">
           {/* Desktop Grid View */}
           <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8">
-            <div className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-xl shadow-lg overflow-hidden aspect-[4/5]">
-              <div className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
-                <span className="text-white text-xs font-medium text-center px-3">
-                  Your bootcamp thumbnail will go here
-                </span>
+            {[0, 1, 2].map((index) => (
+              <div key={index} className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-3xl shadow-lg overflow-hidden aspect-[4/5] relative">
+                {/* Live Indicator */}
+                <div className="absolute top-3 right-3 z-10 flex items-center space-x-2">
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                  </div>
+                  <span className="text-white text-xs font-semibold bg-black/30 backdrop-blur-sm px-2 py-1 rounded-full">
+                    LIVE
+                  </span>
+                </div>
+
+                {/* Bootcamp Image */}
+                <img 
+                  src="/sample_bootcamp.png"
+                  alt={`Bootcamp ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
-            <div className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-xl shadow-lg overflow-hidden aspect-[4/5]">
-              <div className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
-                <span className="text-white text-xs font-medium text-center px-3">
-                  Your bootcamp thumbnail will go here
-                </span>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-[#6B46C1] to-[#4A3F9D] rounded-xl shadow-lg overflow-hidden aspect-[4/5]">
-              <div className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
-                <span className="text-white text-xs font-medium text-center px-3">
-                  Your bootcamp thumbnail will go here
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
 
           {/* Mobile 3D Layered Carousel */}
