@@ -29,6 +29,7 @@ import {
 } from 'react-icons/si';
 
 import PopularBootcamps from '../components/PopularBootcamps';
+import PracticalCourses from '../components/PracticalCourses';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -217,6 +218,7 @@ const Home = () => {
         </div>
       </div>
       <PopularBootcamps />
+      <PracticalCourses />
     </div>
   );
 };
