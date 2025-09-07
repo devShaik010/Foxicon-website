@@ -28,6 +28,8 @@ import {
   SiGooglecloud
 } from 'react-icons/si';
 
+import PopularBootcamps from '../components/PopularBootcamps';
+
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [typedText, setTypedText] = useState('');
@@ -214,6 +216,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <PopularBootcamps />
     </div>
   );
 };
