@@ -43,3 +43,27 @@
 .pulse-glow {
   animation: pulse-glow 2s infinite;
 }
+
+/* Smooth sliding animation for carousel */
+@keyframes slide-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+.animate-slide-slow {
+  animation: slide-slow 20s linear infinite;
+}
+
+/* Hide scrollbar for clean carousel look */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
