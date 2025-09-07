@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Reset default margins and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Custom 3D Carousel Styles */
 .perspective-1000 {
   perspective: 1000px;

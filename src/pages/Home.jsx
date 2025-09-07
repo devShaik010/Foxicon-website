@@ -30,6 +30,7 @@ import {
 
 import PopularBootcamps from '../components/PopularBootcamps';
 import PracticalCourses from '../components/PracticalCourses';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -108,7 +109,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+    <div className="min-h-screen bg-gray-50 flex flex-col" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 sm:px-6">
         {/* Main Heading */}
@@ -219,6 +220,7 @@ const Home = () => {
       </div>
       <PopularBootcamps />
       <PracticalCourses />
+      <Footer />
     </div>
   );
 };
