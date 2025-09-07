@@ -83,7 +83,6 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
 
 const PracticalCourses = () => {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [showAll, setShowAll] = useState(false);
   
   const categories = [
     'All',
@@ -105,46 +104,19 @@ const PracticalCourses = () => {
     },
     {
       id: 2,
-      title: 'Git - Github',
-      category: 'master the version control with hands on and Practical',
+      title: 'React - Frontend',
+      category: 'Build modern web applications with React and TypeScript',
       mode: 'Online - zoom',
-      duration: '1 Month',
+      duration: '2 Months',
       instructor: 'Shaik Abrar',
       type: 'Web Dev'
     },
     {
       id: 3,
-      title: 'Git - Github',
-      category: 'master the version control with hands on and Practical',
+      title: 'Node.js - Backend',
+      category: 'Server-side development with Node.js and Express',
       mode: 'Online - zoom',
-      duration: '1 Month',
-      instructor: 'Shaik Abrar',
-      type: 'App Dev'
-    },
-    {
-      id: 4,
-      title: 'Git - Github',
-      category: 'master the version control with hands on and Practical',
-      mode: 'Online - zoom',
-      duration: '1 Month',
-      instructor: 'Shaik Abrar',
-      type: 'ML'
-    },
-    {
-      id: 5,
-      title: 'Git - Github',
-      category: 'master the version control with hands on and Practical',
-      mode: 'Online - zoom',
-      duration: '1 Month',
-      instructor: 'Shaik Abrar',
-      type: 'Analytics'
-    },
-    {
-      id: 6,
-      title: 'Git - Github',
-      category: 'master the version control with hands on and Practical',
-      mode: 'Online - zoom',
-      duration: '1 Month',
+      duration: '1.5 Months',
       instructor: 'Shaik Abrar',
       type: 'Web Dev'
     }
@@ -153,9 +125,6 @@ const PracticalCourses = () => {
   const filteredCourses = activeCategory === 'All' 
     ? courses 
     : courses.filter(course => course.type === activeCategory);
-
-  // Limit courses shown initially
-  const coursesToShow = showAll ? filteredCourses : filteredCourses.slice(0, 4);
 
   return (
     <section className="py-12 sm:py-16 lg:pb-8 lg:pt-20 bg-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -184,7 +153,7 @@ const PracticalCourses = () => {
             {/* Carousel Container */}
             <div className="overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
               <div className="flex gap-4 px-4">
-                {coursesToShow.map((course, index) => (
+                {filteredCourses.map((course, index) => (
                   <div 
                     key={course.id}
                     className="snap-center flex-shrink-0"
@@ -204,7 +173,7 @@ const PracticalCourses = () => {
             {/* Progress Indicator */}
             <div className="flex justify-center mt-4">
               <div className="flex space-x-1">
-                {coursesToShow.map((_, index) => (
+                {filteredCourses.map((_, index) => (
                   <div
                     key={index}
                     className="w-1.5 h-1.5 rounded-full bg-gray-300"
@@ -217,8 +186,8 @@ const PracticalCourses = () => {
 
         {/* Desktop Grid */}
         <div className="hidden sm:block">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 justify-items-center">
-            {coursesToShow.map((course, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-8 justify-items-center">
+            {filteredCourses.map((course, index) => (
               <div 
                 key={course.id}
                 className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
@@ -236,20 +205,15 @@ const PracticalCourses = () => {
           </div>
         </div>
 
-        {/* Load More Button */}
-        {!showAll && filteredCourses.length > 4 && (
-          <div className="text-center mt-10">
-            <button 
-              onClick={() => setShowAll(true)}
-              className="inline-flex items-center justify-center bg-gray-900 text-white px-6 py-2.5 font-medium hover:bg-black transition-all duration-300 text-sm rounded-lg border border-gray-900 hover:border-black group"
-            >
-              <span>Load More</span>
-              <svg className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+        {/* Coming Soon Message */}
+        <div className="text-center mt-10">
+          <div className="inline-flex items-center justify-center bg-gray-100 text-gray-600 px-6 py-3 rounded-lg font-medium text-sm border border-gray-200">
+            <svg className="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>More courses coming soon...</span>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );
