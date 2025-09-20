@@ -4,9 +4,9 @@ import Navbar from './Navbar';
 
 const Layout = () => {
   return (
-    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+    <div className="min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
       <Navbar />
-      <main className="pb-6">
+      <main>
         <Outlet />
       </main>
     </div>

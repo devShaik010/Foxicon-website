@@ -31,6 +31,9 @@ import {
 import PopularBootcamps from '../components/PopularBootcamps';
 import PracticalCourses from '../components/PracticalCourses';
 import AboutSection from '../components/AboutSection';
+import InfoCards from '../components/InfoCards';
+import InstructorSection from '../components/InstructorSection';
+import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 
 const Home = () => {
@@ -222,6 +225,9 @@ const Home = () => {
       <PopularBootcamps />
       <PracticalCourses />
       <AboutSection />
+      <InfoCards />
+      <InstructorSection />
+      <FAQSection />
       <Footer />
     </div>
   );

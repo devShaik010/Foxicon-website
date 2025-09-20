@@ -5,12 +5,19 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Ensure no default margins on body */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Custom 3D Carousel Styles */
